@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>For Aman 🦋</title>
+<style>
+:root {
+  --bg:#07010b; --panel:#16081f; --pink:#ff43a8; --pink2:#ff82cc; --white:#fff2fb;
+  --muted:#d8c9d8; --green:#06c98b; --green2:#05a879;
+}
+* { box-sizing:border-box; }
+html,body { margin:0; min-height:100%; overflow:hidden; background:var(--bg); color:var(--white); font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
+body::before {
+  content:""; position:fixed; inset:0; z-index:-4;
+  background:
+    radial-gradient(circle at 50% 20%, rgba(255,67,168,.20), transparent 26%),
+    radial-gradient(circle at 15% 78%, rgba(255,67,168,.12), transparent 22%),
+    radial-gradient(circle at 92% 68%, rgba(255,67,168,.10), transparent 24%),
+    linear-gradient(180deg,#09000e 0%, #060009 100%);
+}
+body::after {
+  content:""; position:fixed; inset:0; z-index:-3; opacity:.55;
+  background-image: radial-gradient(rgba(255,67,168,.48) 1.2px, transparent 1.2px);
+  background-size: 115px 115px;
+  animation: starDrift 16s linear infinite;
+}
+@keyframes starDrift { from { transform:translateY(0) } to { transform:translateY(-115px) } }
+.hidden { display:none !important; }
+.app { width:100vw; height:100svh; position:relative; overflow:hidden; }
+.screen { position:absolute; inset:0; display:grid; place-items:center; padding:28px 18px; opacity:0; pointer-events:none; transform:translateY(18px) scale(.985); transition: opacity .55s ease, transform .55s ease; }
+.screen.active { opacity:1; pointer-events:auto; transform:translateY(0) scale(1); }
+.content { width:min(1080px, 96vw); text-align:center; display:flex; flex-direction:column; align-items:center; gap:18px; }
+.iconGlow { width:132px; height:132px; display:grid; place-items:center; margin-bottom:10px; border-radius:50%; font-size:62px; background:radial-gradient(circle, rgba(255,255,255,.08), rgba(255,67,168,.10) 55%, transparent 72%); box-shadow:0 0 55px rgba(255,67,168,.33); animation: floaty 3.2s ease-in-out infinite; }
+.catSticker { width:122px; height:122px; object-fit:cover; border-radius:30px; border:5px solid #fff; filter: drop-shadow(0 0 25px rgba(255,67,168,.7)); animation: floaty 3.3s ease-in-out infinite; }
+@keyframes floaty { 0%,100% { transform:translateY(0) rotate(-1deg); } 50% { transform:translateY(-12px) rotate(1.5deg); } }
+h1 { margin:0; font-family: Georgia, 'Times New Roman', serif; font-weight:800; letter-spacing:-.04em; line-height:.93; font-size:clamp(44px, 9vw, 112px); color:var(--white); text-shadow:0 0 28px rgba(255,67,168,.18); }
+h2 { margin:0; font-family: Georgia, 'Times New Roman', serif; font-weight:900; letter-spacing:-.035em; line-height:1.02; font-size:clamp(36px, 7vw, 82px); color:var(--pink); text-shadow:0 0 24px rgba(255,67,168,.26); }
+p { margin:0; max-width:920px; font-size:clamp(18px, 2.4vw, 30px); line-height:1.45; color:var(--muted); font-weight:650; }
+.small { font-size:clamp(15px, 2vw, 22px); opacity:.82; }
+.fancy { color:var(--pink); font-family:Georgia,'Times New Roman',serif; font-size:clamp(26px,4.5vw,55px); font-weight:900; }
+.btnRow { position:relative; width:min(620px, 94vw); min-height:104px; display:flex; align-items:center; justify-content:center; gap:18px; margin-top:10px; }
+button { border:0; outline:0; cursor:pointer; user-select:none; font-weight:900; font-size:clamp(16px, 2vw, 22px); border-radius:24px; padding:19px 31px; color:white; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+button:active { transform:scale(.96); }
+.btnPink { background:linear-gradient(180deg,#ff60b8,#ff2b98); box-shadow:0 0 34px rgba(255,67,168,.42), inset 0 1px rgba(255,255,255,.25); min-width:210px; }
+.btnPink:hover { transform:translateY(-2px); box-shadow:0 0 48px rgba(255,67,168,.58), inset 0 1px rgba(255,255,255,.25); }
+.btnGreen { background:linear-gradient(180deg,#0ee0a0,#02b982); box-shadow:0 0 35px rgba(0,207,146,.45), inset 0 1px rgba(255,255,255,.28); min-width:235px; }
+.btnNo { background:rgba(255,255,255,.075); color:#efe2ef; border:1px solid rgba(255,255,255,.13); box-shadow:0 0 20px rgba(255,67,168,.08); min-width:140px; z-index:20; }
+.message { min-height:34px; color:#ff83cf; font-size:clamp(16px,2vw,25px); font-weight:900; }
+.back { position:fixed; top:14px; right:18px; z-index:40; padding:12px 21px; border-radius:999px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18); color:#f3e8f1; font-size:17px; backdrop-filter:blur(12px); }
+.cardTap { width:min(560px,90vw); min-height:250px; border-radius:34px; display:grid; place-items:center; padding:28px; background:linear-gradient(180deg, rgba(255,255,255,.065), rgba(255,67,168,.06)); border:2px solid rgba(255,67,168,.38); box-shadow:0 0 60px rgba(255,67,168,.25); animation: breathe 2.5s ease-in-out infinite; }
+@keyframes breathe { 0%,100% { transform:scale(1); } 50% { transform:scale(1.025); } }
+.galleryWrap { position:relative; width:min(1140px,96vw); min-height:500px; display:flex; align-items:center; justify-content:center; perspective:1200px; margin:8px 0 6px; }
+.photoCard { position:absolute; width:min(560px,70vw); height:min(430px,48vh); border-radius:34px; overflow:hidden; border:2px solid rgba(255,67,168,.76); box-shadow:0 0 46px rgba(255,67,168,.23); transition:transform .55s cubic-bezier(.2,.8,.2,1), opacity .55s ease, filter .55s ease; background:#1a0b22; }
+.photoCard img { width:100%; height:100%; object-fit:cover; display:block; transform:scale(1.04); animation:sway 5.5s ease-in-out infinite; }
+@keyframes sway { 0%,100% { transform:translateX(-7px) scale(1.055); } 50% { transform:translateX(7px) scale(1.055); } }
+.photoCard::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 42%, rgba(0,0,0,.58) 100%); pointer-events:none; }
+.caption { position:absolute; left:18px; right:18px; bottom:26px; z-index:2; font-family:Georgia,'Times New Roman',serif; font-size:clamp(20px, 3vw, 32px); font-weight:900; color:white; text-shadow:0 2px 14px rgba(0,0,0,.7); }
+.photoCard.active { transform:translateX(0) rotateY(0) scale(1); opacity:1; z-index:5; filter:none; }
+.photoCard.left { transform:translateX(-58%) rotateY(14deg) scale(.82); opacity:.36; z-index:2; filter:blur(.4px); }
+.photoCard.right { transform:translateX(58%) rotateY(-14deg) scale(.82); opacity:.36; z-index:2; filter:blur(.4px); }
+.photoCard.far { opacity:0; transform:scale(.70); z-index:0; }
+.arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:10; width:72px; height:72px; border-radius:50%; display:grid; place-items:center; background:rgba(255,67,168,.10); border:1px solid rgba(255,67,168,.46); color:var(--pink); font-size:50px; padding:0; }
+.arrow.leftA { left:0; } .arrow.rightA { right:0; }
+.dots { display:flex; gap:13px; justify-content:center; margin:-4px 0 16px; }
+.dot { width:16px; height:16px; border-radius:999px; background:rgba(255,255,255,.22); transition:.3s; } .dot.on { width:48px; background:var(--pink); box-shadow:0 0 20px rgba(255,67,168,.55); }
+.letterBox { width:min(850px,94vw); max-height:70svh; overflow:auto; padding:30px 26px; border-radius:32px; background:rgba(255,255,255,.045); border:1px solid rgba(255,67,168,.33); box-shadow:0 0 55px rgba(255,67,168,.18); scrollbar-color: var(--pink) transparent; }
+.letterBox p { font-size:clamp(18px,2.1vw,28px); }
+.finalPopup { position:fixed; inset:0; z-index:80; display:grid; place-items:center; background:rgba(5,0,8,.72); backdrop-filter: blur(10px); opacity:0; pointer-events:none; transition:.35s; }
+.finalPopup.show { opacity:1; pointer-events:auto; }
+.popupCard { width:min(560px,92vw); padding:38px 24px; border-radius:35px; background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,67,168,.08)); border:1px solid rgba(255,67,168,.36); box-shadow:0 0 70px rgba(255,67,168,.35); text-align:center; }
+.flyLayer, .heartLayer { position:fixed; inset:0; pointer-events:none; overflow:hidden; z-index:65; }
+.butterflyFly { position:absolute; font-size:28px; filter:drop-shadow(0 0 10px rgba(255,67,168,.6)); animation:flyAcross var(--dur) linear forwards; }
+@keyframes flyAcross { from { transform:translate(var(--x0), var(--y0)) rotate(0deg) scale(.8); opacity:0; } 12% { opacity:1; } 50% { transform:translate(calc((var(--x0) + var(--x1)) / 2), calc(var(--y1) - 70px)) rotate(14deg) scale(1.15); } to { transform:translate(var(--x1), var(--y1)) rotate(-14deg) scale(.85); opacity:0; } }
+.floatHeart { position:absolute; font-size:18px; color:var(--pink); animation:heartUp 6s linear forwards; opacity:.75; }
+@keyframes heartUp { from { transform:translateY(20px) scale(.7); opacity:0; } 15% { opacity:.75; } to { transform:translateY(-115vh) scale(1.3); opacity:0; } }
+@media(max-width:680px) {
+  .screen { padding:16px 12px; }
+  .content { gap:14px; }
+  .iconGlow { width:96px; height:96px; font-size:48px; }
+  .btnRow { min-height:128px; gap:12px; }
+  button { padding:16px 22px; border-radius:19px; }
+  .btnGreen { min-width:185px; } .btnNo { min-width:110px; }
+  .galleryWrap { min-height:420px; }
+  .photoCard { width:78vw; height:360px; }
+  .photoCard.left { transform:translateX(-50%) rotateY(12deg) scale(.75); }
+  .photoCard.right { transform:translateX(50%) rotateY(-12deg) scale(.75); }
+  .arrow { width:54px; height:54px; font-size:38px; }
+  .back { top:10px; right:10px; font-size:14px; padding:10px 15px; }
+}
+</style>
+</head>
+<body>
+<div class="app" id="app">
+  <button class="back hidden" id="backBtn">‹ Back</button>
+  <div class="flyLayer" id="flyLayer"></div><div class="heartLayer" id="heartLayer"></div>
+
+  <section class="screen active" data-screen="0"><div class="content">
+    <div class="iconGlow">🐣</div><h2>I have something special<br>to tell you...</h2>
+    <p>Something small, soft, and from my heart. So don’t skip, okay?</p>
+    <button class="btnPink next">Next 💗</button>
+  </div></section>
+
+  <section class="screen" data-screen="1"><div class="content">
+    <div class="iconGlow">💌</div><h1>Before I say it...</h1>
+    <p>This is not to make anything awkward. It’s just something sweet I made for you because you matter to me more than you know.</p>
+    <button class="btnPink next">Okay, tell me</button>
+  </div></section>
+
+  <section class="screen question" data-screen="2"><div class="content">
+    <div class="iconGlow">🐣</div><h1>Be honest with me...</h1><p class="small">This is important to me 💕</p>
+    <div class="fancy">Do you trust me?</div>
+    <div class="btnRow"><button class="btnGreen yes">Yes, I do 💞</button><button class="btnNo no">No 😔</button></div>
+    <div class="message"></div>
+  </div></section>
+
+  <section class="screen question" data-screen="3"><div class="content">
+    <div class="iconGlow">🙈</div><h1>One more thing...</h1><p class="small">I need to know this 💖</p>
+    <div class="fancy">Can I be your monkey?</div>
+    <p>The one who annoys you, makes stupid jokes, sends random messages, and still only wants to see you smile.</p>
+    <div class="btnRow"><button class="btnGreen yes">Yes, my monkey 🙈</button><button class="btnNo no">No 🥺</button></div>
+    <div class="message"></div>
+  </div></section>
+
+  <section class="screen question" data-screen="4"><div class="content">
+    <div class="iconGlow">🦋</div><h1>Last question,<br>I promise!</h1><p class="small">This one is the most important 🌟</p>
+    <div class="fancy">Will you be my butterfly forever?</div>
+    <p>Not in a scary forever way, just in a soft way… like someone whose presence makes life feel lighter, warmer, and prettier.</p>
+    <div class="btnRow"><button class="btnGreen yes">Yes, forever! 🦋</button><button class="btnNo no">Let me think... 🤔</button></div>
+    <div class="message"></div>
+  </div></section>
+
+  <section class="screen" data-screen="5"><div class="content">
+    <div class="iconGlow">💝</div><h1>I made a little<br>place for you...</h1>
+    <div class="cardTap next"><div><div style="font-size:64px;margin-bottom:10px;">💗</div><p>Tap to see what’s inside 💗</p><button class="btnPink" style="margin-top:22px;">Tap here ✨</button></div></div>
+  </div></section>
+
+  <section class="screen" data-screen="6"><div class="content" style="gap:10px;">
+    <h2>My favorite butterfly<br>moments 🦋</h2>
+    <p>Some pictures are not just pictures. They are tiny pieces of happiness saved forever.</p>
+    <div class="galleryWrap" id="gallery">
+      <button class="arrow leftA" id="prevPic">‹</button>
+      <div class="photoCard"><img src="assets/sky_orange.png" alt="Aman gallery image 1"><div class="caption">Tum asmaan ki taraf thi, aur meri nazar sirf tum par.</div></div>
+      <div class="photoCard"><img src="assets/mountain_chai.png" alt="Aman gallery image 2"><div class="caption">Tum, main, pahaar aur aik cup chai.</div></div>
+      <div class="photoCard"><img src="assets/red_butterfly.png" alt="Aman gallery image 3"><div class="caption">Titli us ke haath par nahi, us ki masoomiyat par baithi thi.</div></div>
+      <button class="arrow rightA" id="nextPic">›</button>
+    </div>
+    <div class="dots" id="dots"></div>
+    <button class="btnPink next">Continue 💗</button>
+  </div></section>
+
+  <section class="screen" data-screen="7"><div class="content">
+    <div class="iconGlow">🦋</div><h2>You are special to me, Aman</h2>
+    <p>Every moment with you feels special in a way I never expected. You became my comfort, my favorite person to annoy, my safe place, and the one smile I never get tired of seeing.</p>
+    <button class="btnPink next">Read more</button>
+  </div></section>
+
+  <section class="screen" data-screen="8"><div class="content">
+    <div class="letterBox"><div class="iconGlow" style="margin-inline:auto;width:100px;height:100px;font-size:48px;">💌</div>
+    <h2 style="font-size:clamp(34px,5vw,58px);">My Dearest Aman,</h2><br>
+    <p>From the moment I met you, my world changed forever. Your smile lights up my darkest days, and your laughter is the sweetest melody I’ve ever heard.</p><br>
+    <p>I don’t know how you do it, but even on my hardest days, one message from you can make my heart feel lighter. You have this soft, beautiful way of making ordinary moments feel unforgettable.</p><br>
+    <p>Aman, you are not just my best friend. You are my butterfly — gentle, beautiful, rare, and impossible to replace. And maybe I am just your little monkey, always doing stupid things just to make you smile.</p>
+    </div><button class="btnPink next">Last thing…</button>
+  </div></section>
+
+  <section class="screen" data-screen="9"><div class="content">
+    <div class="iconGlow">🦋</div><h1>So...</h1>
+    <p>This is my small way of telling you that you mean more to me than words can properly explain. Thank you for being in my life, for making it warmer, softer, and a little more magical.</p>
+    <button class="btnPink" id="finalYes">Yes, I’ll always be your butterfly 🦋💗</button>
+  </div></section>
+</div>
+<div class="finalPopup" id="finalPopup"><div class="popupCard"><div class="iconGlow" style="margin-inline:auto;">🙈</div><h2>Yaaay!</h2><p>Then your monkey is officially the happiest monkey alive 🙈💗</p><br><button class="btnPink" onclick="document.getElementById('finalPopup').classList.remove('show')">Awww 💗</button></div></div>
+<script>
+const screens=[...document.querySelectorAll('.screen')]; let current=0;
+const backBtn=document.getElementById('backBtn');
+function show(i, butterflies=false){
+  current=Math.max(0,Math.min(i,screens.length-1));
+  screens.forEach((s,idx)=>s.classList.toggle('active',idx===current));
+  backBtn.classList.toggle('hidden', current===0);
+  if(butterflies) releaseButterflies(28);
+}
+document.querySelectorAll('.next').forEach(el=>el.addEventListener('click',()=>show(current+1,true)));
+backBtn.addEventListener('click',()=>show(current-1));
+
+document.querySelectorAll('.question').forEach(sec=>{
+  const yes=sec.querySelector('.yes'), no=sec.querySelector('.no'), msg=sec.querySelector('.message');
+  yes.addEventListener('click',()=>show(current+1,true));
+  const messageMap={2:'Hawww, trust your monkey a little 😭',3:'No option is not allowed for monkey business 🙈',4:'Butterflies don’t say no, they just fly closer 🦋'};
+  const run=(e)=>{ e.preventDefault(); msg.textContent=messageMap[+sec.dataset.screen]||'Nooo 😭'; moveNoSafely(no, yes); };
+  no.addEventListener('mouseenter',run); no.addEventListener('click',run); no.addEventListener('touchstart',run,{passive:false});
+});
+function rectsOverlap(a,b){return !(a.right<b.left||a.left>b.right||a.bottom<b.top||a.top>b.bottom)}
+function moveNoSafely(no, yes){
+  no.style.position='fixed'; no.style.margin='0';
+  const vw=innerWidth, vh=innerHeight, pad=18;
+  const nr=no.getBoundingClientRect(), yr=yes.getBoundingClientRect();
+  const spots=[
+    [vw/2-nr.width/2, Math.max(pad,yr.top-115)],
+    [pad, vh/2-nr.height/2],
+    [vw-nr.width-pad, vh/2-nr.height/2],
+    [pad,pad+70],
+    [vw-nr.width-pad,pad+70],
+    [pad,vh-nr.height-pad-70],
+    [vw-nr.width-pad,vh-nr.height-pad-70],
+    [vw/2-nr.width/2, vh-nr.height-pad-45]
+  ];
+  let valid=spots.map(([x,y])=>[Math.max(pad,Math.min(x,vw-nr.width-pad)),Math.max(pad,Math.min(y,vh-nr.height-pad))])
+    .filter(([x,y])=>!rectsOverlap({left:x,top:y,right:x+nr.width,bottom:y+nr.height}, yr));
+  if(!valid.length) valid=[[pad,pad+70]];
+  const last=no.dataset.lastSpot?+no.dataset.lastSpot:-1; let idx=Math.floor(Math.random()*valid.length); if(valid.length>1 && idx===last) idx=(idx+1)%valid.length;
+  no.dataset.lastSpot=idx; const [x,y]=valid[idx];
+  no.style.left=x+'px'; no.style.top=y+'px'; no.style.transform=`rotate(${Math.random()*14-7}deg)`;
+}
+
+const flyLayer=document.getElementById('flyLayer');
+function releaseButterflies(count=24){
+  for(let i=0;i<count;i++) setTimeout(()=>{
+    const b=document.createElement('div'); b.className='butterflyFly'; b.textContent=Math.random()>.25?'🦋':'💗';
+    const fromLeft=Math.random()>.5; const y0=Math.random()*innerHeight; const y1=Math.random()*innerHeight;
+    b.style.setProperty('--x0', fromLeft?'-60px':(innerWidth+60)+'px');
+    b.style.setProperty('--x1', fromLeft?(innerWidth+70)+'px':'-70px');
+    b.style.setProperty('--y0', y0+'px'); b.style.setProperty('--y1', y1+'px');
+    b.style.setProperty('--dur', (3.7+Math.random()*2.4)+'s'); b.style.fontSize=(22+Math.random()*24)+'px';
+    flyLayer.appendChild(b); setTimeout(()=>b.remove(),6500);
+  }, i*50);
+}
+const heartLayer=document.getElementById('heartLayer');
+setInterval(()=>{
+  const h=document.createElement('div'); h.className='floatHeart'; h.textContent=Math.random()>.5?'♡':'💗'; h.style.left=(Math.random()*100)+'vw'; h.style.bottom='-30px'; h.style.animationDuration=(5+Math.random()*5)+'s'; heartLayer.appendChild(h); setTimeout(()=>h.remove(),10500);
+},520);
+
+let pic=0; const cards=[...document.querySelectorAll('.photoCard')], dots=document.getElementById('dots');
+cards.forEach((_,i)=>{ const d=document.createElement('div'); d.className='dot'; d.addEventListener('click',()=>{pic=i;updateGallery();}); dots.appendChild(d); });
+function updateGallery(){
+  cards.forEach((c,i)=>{ c.className='photoCard'; if(i===pic)c.classList.add('active'); else if(i===(pic+cards.length-1)%cards.length)c.classList.add('left'); else if(i===(pic+1)%cards.length)c.classList.add('right'); else c.classList.add('far'); });
+  [...dots.children].forEach((d,i)=>d.classList.toggle('on',i===pic));
+}
+document.getElementById('prevPic').onclick=()=>{ pic=(pic+cards.length-1)%cards.length; updateGallery(); };
+document.getElementById('nextPic').onclick=()=>{ pic=(pic+1)%cards.length; updateGallery(); };
+updateGallery();
+document.getElementById('finalYes').addEventListener('click',()=>{ releaseButterflies(55); document.getElementById('finalPopup').classList.add('show'); });
+</script>
+</body></html>
